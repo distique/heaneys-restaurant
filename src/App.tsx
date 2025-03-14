@@ -1,18 +1,22 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Admin from './components/Admin';
 import Menus from './components/Menus';
+import Admin from './components/Admin';
 import WebsiteSettings from './components/WebsiteSettings';
+import { SettingsProvider } from './context/SettingsContext';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Router basename="/heaneys-restaurant">
-      <Routes>
-        <Route path="/" element={<Menus />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/settings" element={<WebsiteSettings />} />
-      </Routes>
-    </Router>
+    <SettingsProvider>
+      <Router basename="/heaneys-restaurant">
+        <Routes>
+          <Route path="/" element={<Menus />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/settings" element={<WebsiteSettings />} />
+        </Routes>
+      </Router>
+    </SettingsProvider>
   );
-}
+};
 
 export default App;
